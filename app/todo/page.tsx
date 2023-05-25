@@ -1,14 +1,14 @@
 import Link from 'next/link';
 
-export default function Home() {
+export default function Todo() {
   return (
     <main>
-      <h1>Hello World from homepage</h1>
+      <h1>Todo page</h1>
       <Link
-        href="/todo"
+        href="/"
         className="inline-block bg-black text-white py-2 px-8 my-8 rounded-full"
       >
-        See all to-dos
+        Go home
       </Link>
     </main>
   );
