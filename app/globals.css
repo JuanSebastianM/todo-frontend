@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    @apply block bg-black border border-black text-white py-2 px-8 rounded-full hover:bg-white hover:text-black transition-all;
+  }
+}
