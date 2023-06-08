@@ -1,3 +1,4 @@
+import { ApolloClientProvider } from '@/app/components/ApolloClientProvider';
 import AuthProvider from '@/app/components/AuthProvider';
 import GlobalHeader from '@/app/components/GlobalHeader';
 import { authOptions } from '@/authOptions';
@@ -33,8 +34,10 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider session={session}>
-          <GlobalHeader />
-          <main>{children}</main>
+          <ApolloClientProvider>
+            <GlobalHeader />
+            <main>{children}</main>
+          </ApolloClientProvider>
         </AuthProvider>
       </body>
     </html>
