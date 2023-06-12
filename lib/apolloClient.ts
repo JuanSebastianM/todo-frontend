@@ -9,8 +9,10 @@ export const { getClient } = registerApolloClient(() => {
   return new ApolloClient({
     cache: new InMemoryCache(),
     link: new HttpLink({
-      uri: process.env.GRAPHQL_URI,
-      fetchOptions: { cache: 'no-store' },
+      uri: process.env.NEXT_PUBLIC_GRAPHQL_URI,
+      fetchOptions: {
+        next: { revalidate: 0 },
+      },
     }),
   });
 });
