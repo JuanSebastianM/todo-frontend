@@ -1,35 +1,26 @@
-import { gql } from '@apollo/client';
-
-export type TodoMode = 'editing' | 'reading' | 'creating';
+export enum TodoModeEnum {
+  EDITING = 'editing',
+  READING = 'reading',
+  CREATING = 'creating',
+}
 
 interface TodoButtonTypes {
   success: string;
   danger?: string;
 }
 
-export const GET_ALL_TASKS = gql`
-  query GetAllTasks {
-    getAllTasks {
-      id
-      title
-      description
-      done
-    }
-  }
-`;
-
 export const TODO_MODE_BUTTONS: Record<
-  TodoMode,
+  TodoModeEnum,
   TodoButtonTypes
 > = {
-  creating: {
+  [TodoModeEnum.CREATING]: {
     success: 'Create',
   },
-  editing: {
+  [TodoModeEnum.EDITING]: {
     success: 'Save',
     danger: 'Cancel',
   },
-  reading: {
+  [TodoModeEnum.READING]: {
     success: 'Edit',
     danger: 'Delete',
   },

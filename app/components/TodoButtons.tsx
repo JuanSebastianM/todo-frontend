@@ -2,12 +2,12 @@
 
 import {
   TODO_MODE_BUTTONS,
-  TodoMode,
+  TodoModeEnum,
 } from '@/utils/constants';
 
 interface TodoButtonsProps {
   authorEmail: string;
-  mode: TodoMode;
+  mode: TodoModeEnum;
 }
 
 const TodoButtons = ({

@@ -4,5 +4,6 @@ query GetAllTasks {
     title
     description
     done
+    authorEmail
   }
 }
