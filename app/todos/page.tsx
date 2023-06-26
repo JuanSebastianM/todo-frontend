@@ -45,7 +45,7 @@ export default async function TodosPage() {
       <div>
         <TodoForm
           authorEmail={user?.email ?? ''}
-          mode={TodoModeEnum.EDITING}
+          mode={TodoModeEnum.CREATING}
         />
       </div>
       {areThereTasks ? (
