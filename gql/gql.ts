@@ -13,6 +13,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+    "mutation CreateTask($authorEmail: String!, $title: String!, $description: String) {\n  createTask(authorEmail: $authorEmail, title: $title, description: $description) {\n    authorEmail\n    id\n    title\n    description\n    done\n  }\n}": types.CreateTaskDocument,
+    "mutation EditTaskById($id: ID!, $title: String, $description: String) {\n  editTask(id: $id, title: $title, description: $description) {\n    authorEmail\n    id\n    title\n    description\n    done\n  }\n}": types.EditTaskByIdDocument,
     "query GetAllTasks {\n  getAllTasks {\n    id\n    title\n    description\n    done\n    authorEmail\n  }\n}": types.GetAllTasksDocument,
 };
 
@@ -30,6 +32,14 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation CreateTask($authorEmail: String!, $title: String!, $description: String) {\n  createTask(authorEmail: $authorEmail, title: $title, description: $description) {\n    authorEmail\n    id\n    title\n    description\n    done\n  }\n}"): (typeof documents)["mutation CreateTask($authorEmail: String!, $title: String!, $description: String) {\n  createTask(authorEmail: $authorEmail, title: $title, description: $description) {\n    authorEmail\n    id\n    title\n    description\n    done\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation EditTaskById($id: ID!, $title: String, $description: String) {\n  editTask(id: $id, title: $title, description: $description) {\n    authorEmail\n    id\n    title\n    description\n    done\n  }\n}"): (typeof documents)["mutation EditTaskById($id: ID!, $title: String, $description: String) {\n  editTask(id: $id, title: $title, description: $description) {\n    authorEmail\n    id\n    title\n    description\n    done\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

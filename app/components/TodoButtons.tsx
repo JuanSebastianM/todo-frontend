@@ -6,19 +6,27 @@ import {
 } from '@/utils/constants';
 
 interface TodoButtonsProps {
-  authorEmail: string;
   mode: TodoModeEnum;
 }
 
-const TodoButtons = ({
-  authorEmail,
-  mode,
-}: TodoButtonsProps) => {
+const TodoButtons = ({ mode }: TodoButtonsProps) => {
   const buttonTypes = TODO_MODE_BUTTONS[mode];
+
+  const isSubmitButton = [
+    TodoModeEnum.CREATING,
+    TodoModeEnum.EDITING,
+  ].includes(mode);
+  
+  const buttonTypeConfig = isSubmitButton
+    ? 'submit'
+    : 'button';
 
   return (
     <>
-      <button type="button" className="btn-secondary">
+      <button
+        type={buttonTypeConfig}
+        className="btn-secondary"
+      >
         {buttonTypes.success}
       </button>
       {buttonTypes.danger ? (

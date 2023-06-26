@@ -1,11 +1,10 @@
 import { ApolloClientProvider } from '@/app/components/ApolloClientProvider';
 import AuthProvider from '@/app/components/AuthProvider';
 import GlobalHeader from '@/app/components/GlobalHeader';
-import { authOptions } from '@/authOptions';
 import { Metadata } from 'next';
-import { Session, getServerSession } from 'next-auth';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { getSession } from '@/utils/get-session';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -22,13 +21,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let session: Session | null;
-
-  try {
-    session = await getServerSession(authOptions);
-  } catch {
-    session = null;
-  }
+  const session = await getSession();
 
   return (
     <html lang="en">

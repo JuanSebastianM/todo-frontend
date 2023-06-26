@@ -1,0 +1,17 @@
+mutation CreateTask(
+  $authorEmail: String!
+  $title: String!
+  $description: String
+) {
+  createTask(
+    authorEmail: $authorEmail
+    title: $title
+    description: $description
+  ) {
+    authorEmail
+    id
+    title
+    description
+    done
+  }
+}

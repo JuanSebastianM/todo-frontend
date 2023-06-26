@@ -1,0 +1,17 @@
+mutation EditTaskById(
+  $id: ID!
+  $title: String
+  $description: String
+) {
+  editTask(
+    id: $id
+    title: $title
+    description: $description
+  ) {
+    authorEmail
+    id
+    title
+    description
+    done
+  }
+}
