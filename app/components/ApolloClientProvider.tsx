@@ -18,6 +18,9 @@ function makeClient() {
     fetchOptions: {
       next: { revalidate: 0 },
     },
+    headers: {
+      authorization: "Bearer 123",
+    }
   });
 
   return new ApolloClient({

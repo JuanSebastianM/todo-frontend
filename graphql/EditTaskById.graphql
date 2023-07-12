@@ -1,17 +1,19 @@
-mutation EditTaskById(
-  $id: ID!
-  $title: String
-  $description: String
+mutation EditTaskBody(
+  $taskId: ID!
+  $newTaskBody: TaskInput!
 ) {
-  editTask(
-    id: $id
-    title: $title
-    description: $description
-  ) {
-    authorEmail
-    id
-    title
-    description
-    done
+  editTaskBody(id: $taskId, task: $newTaskBody) {
+    code
+    success
+    message
+    task {
+      authorEmail
+      id
+      title
+      description
+      done
+      createdAt
+      updatedAt
+    }
   }
 }

@@ -4,6 +4,11 @@ const config: CodegenConfig = {
   overwrite: true,
   schema: 'http://localhost:4000/',
   documents: 'graphql/**/*.graphql',
+  config: {
+    scalars: {
+      Date: 'Date'
+    }
+  },
   generates: {
     'gql/': {
       preset: 'client',

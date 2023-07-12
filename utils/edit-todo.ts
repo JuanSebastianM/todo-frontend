@@ -2,13 +2,20 @@ import { graphql } from "@/gql";
 import { Task } from "@/gql/graphql";
 import { getClient } from "@/lib/apolloClient";
 
-const editTaskByIdMutation = graphql(`mutation EditTaskById($id: ID!, $title: String, $description: String) {
-  editTask(id: $id, title: $title, description: $description) {
-    authorEmail
-    id
-    title
-    description
-    done
+const editTaskByIdMutation = graphql(`mutation EditTaskBody($taskId: ID!, $newTaskBody: TaskInput!) {
+  editTaskBody(id: $taskId, task: $newTaskBody) {
+    code
+    success
+    message
+    task {
+      authorEmail
+      id
+      title
+      description
+      done
+      createdAt
+      updatedAt
+    }
   }
 }`);
 
@@ -22,14 +29,25 @@ export async function editTodo(
 
   const { data, errors } = await graphqlClient.mutate({
     mutation: editTaskByIdMutation,
-    variables: newTaskData,
+    variables: {
+      newTaskBody: {
+        title: newTaskData.title,
+        description: newTaskData.description,
+      },
+      authorEmail: newTaskData.authorEmail,
+      taskId: newTaskData.id,
+    },
   });
 
-   if (errors) {
-     throw new Error(errors[0].message);
-   }
+  if (errors && errors.length > 0) {
+    throw new Error(errors[0].message);
+  }
 
-   console.log(data);
+  if (!data?.editTaskBody?.success) {
+    throw new Error(data?.editTaskBody?.message);
+  }
 
-   return data?.editTask;
+  console.log(data);
+
+  return data?.editTaskBody.task;
 };

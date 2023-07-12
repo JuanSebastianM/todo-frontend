@@ -1,17 +1,19 @@
 mutation CreateTask(
   $authorEmail: String!
-  $title: String!
-  $description: String
+  $task: TaskInput!
 ) {
-  createTask(
-    authorEmail: $authorEmail
-    title: $title
-    description: $description
-  ) {
-    authorEmail
-    id
-    title
-    description
-    done
+  createTask(authorEmail: $authorEmail, task: $task) {
+    code
+    success
+    message
+    task {
+      authorEmail
+      id
+      title
+      description
+      done
+      createdAt
+      updatedAt
+    }
   }
 }

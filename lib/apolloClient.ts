@@ -3,7 +3,7 @@ import {
   HttpLink,
   InMemoryCache,
 } from '@apollo/client';
-import { registerApolloClient } from '@apollo/experimental-nextjs-app-support/rsc';
+import { registerApolloClient } from '@apollo/experimental-nextjs-app-support/rsc'; 
 
 export const { getClient } = registerApolloClient(() => {
   return new ApolloClient({
@@ -13,6 +13,9 @@ export const { getClient } = registerApolloClient(() => {
       fetchOptions: {
         next: { revalidate: 0 },
       },
+      headers: {
+        authorization: "Bearer 123",
+      }
     }),
   });
 });

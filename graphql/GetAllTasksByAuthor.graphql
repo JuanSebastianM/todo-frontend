@@ -1,0 +1,11 @@
+query GetTasksByAuthorEmail($authorEmail: String!) {
+  tasks(authorEmail: $authorEmail) {
+    authorEmail
+    id
+    title
+    description
+    done
+    createdAt
+    updatedAt
+  }
+}

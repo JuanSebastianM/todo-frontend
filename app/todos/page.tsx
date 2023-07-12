@@ -11,13 +11,15 @@ export const metadata: Metadata = {
   title: 'Your To-dos',
 };
 
-const GetAllTasksQuery = graphql(`query GetAllTasks {
-  getAllTasks {
+const GetAllTasksByAuthorQuery = graphql(`query GetTasksByAuthorEmail($authorEmail: String!) {
+  tasks(authorEmail: $authorEmail) {
+    authorEmail
     id
     title
     description
     done
-    authorEmail
+    createdAt
+    updatedAt
   }
 }`);
 
@@ -26,11 +28,16 @@ export default async function TodosPage() {
 
   const graphqlClient = getClient();
 
-  const { data } = await graphqlClient.query({query: GetAllTasksQuery});
+  const { data } = await graphqlClient.query({
+    query: GetAllTasksByAuthorQuery,
+    variables: {
+      authorEmail: session?.user?.email ?? '',
+    }
+  });
 
   const user = session?.user;
 
-  const areThereTasks = !!data.getAllTasks?.length;
+  const areThereTasks = !!data.tasks?.length;
   const introSentence = `Hey, ${user?.name ?? 'user'} 👋! ${
     areThereTasks
       ? 'These are all of your to-dos:'
@@ -50,7 +57,7 @@ export default async function TodosPage() {
       </div>
       {areThereTasks ? (
         <div className="max-w-xl mx-auto mt-12">
-          {data.getAllTasks!.map((task) => {
+          {data.tasks!.map((task) => {
             const {
               id,
               title,

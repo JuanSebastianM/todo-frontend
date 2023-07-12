@@ -1,9 +1,0 @@
-query GetAllTasks {
-  getAllTasks {
-    id
-    title
-    description
-    done
-    authorEmail
-  }
-}
