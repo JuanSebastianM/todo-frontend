@@ -1,7 +1,6 @@
 import TodoForm from "@/app/components/TodoForm";
 import Todo from '@/app/components/Todo';
 import { graphql } from '@/gql';
-import { Task } from '@/gql/graphql';
 import { Metadata } from 'next';
 import { TodoModeEnum } from "@/utils/constants";
 import { getSession } from "@/utils/get-session";

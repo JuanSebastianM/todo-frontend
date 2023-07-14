@@ -1,8 +1,7 @@
-import TodoButtons from '@/app/components/TodoButtons';
+import TodoReadingButtons from '@/app/components/TodoReadingButtons';
 import { Task } from '@/gql/graphql';
-import { TodoModeEnum } from '@/utils/constants';
 
-const Todo = ({ title, description }: Task) => {  
+const Todo = ({ title, description, id }: Task) => {
   return (
     <article className="flex flex-col lg:flex-row items-center border border-black rounded-2xl max-w-xl w-full pb-4 lg:pb-0">
       <div className="flex flex-col items-center basis-1/2">
@@ -15,7 +14,7 @@ const Todo = ({ title, description }: Task) => {
         </p>
       </div>
       <div className="flex justify-center items-center gap-4 basis-1/2">
-        <TodoButtons mode={TodoModeEnum.READING} />
+        <TodoReadingButtons todoId={id} />
       </div>
     </article>
   );

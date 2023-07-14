@@ -1,4 +1,4 @@
-import TodoButtons from '@/app/components/TodoButtons';
+import TodoFormButtons from '@/app/components/TodoFormButtons';
 import { Task } from '@/gql/graphql';
 import { TodoModeEnum } from '@/utils/constants';
 import { addTodo } from '@/utils/add-todo';
@@ -70,7 +70,7 @@ const TodoForm = ({
         </div>
       </div>
       <div className="flex justify-center items-center gap-4">
-        <TodoButtons mode={mode} />
+        <TodoFormButtons mode={mode} />
       </div>
     </form>
   );
