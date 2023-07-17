@@ -1,0 +1,11 @@
+query GetTaskById($taskId: ID!) {
+  task(id: $taskId) {
+    authorEmail
+    id
+    title
+    description
+    done
+    createdAt
+    updatedAt
+  }
+}

@@ -16,6 +16,7 @@ const documents = {
     "mutation CreateTask($authorEmail: String!, $task: TaskInput!) {\n  createTask(authorEmail: $authorEmail, task: $task) {\n    code\n    success\n    message\n    task {\n      authorEmail\n      id\n      title\n      description\n      done\n      createdAt\n      updatedAt\n    }\n  }\n}": types.CreateTaskDocument,
     "mutation EditTaskBody($taskId: ID!, $newTaskBody: TaskInput!) {\n  editTaskBody(id: $taskId, task: $newTaskBody) {\n    code\n    success\n    message\n    task {\n      authorEmail\n      id\n      title\n      description\n      done\n      createdAt\n      updatedAt\n    }\n  }\n}": types.EditTaskBodyDocument,
     "query GetTasksByAuthorEmail($authorEmail: String!) {\n  tasks(authorEmail: $authorEmail) {\n    authorEmail\n    id\n    title\n    description\n    done\n    createdAt\n    updatedAt\n  }\n}": types.GetTasksByAuthorEmailDocument,
+    "query GetTaskById($taskId: ID!) {\n  task(id: $taskId) {\n    authorEmail\n    id\n    title\n    description\n    done\n    createdAt\n    updatedAt\n  }\n}": types.GetTaskByIdDocument,
 };
 
 /**
@@ -44,6 +45,10 @@ export function graphql(source: "mutation EditTaskBody($taskId: ID!, $newTaskBod
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query GetTasksByAuthorEmail($authorEmail: String!) {\n  tasks(authorEmail: $authorEmail) {\n    authorEmail\n    id\n    title\n    description\n    done\n    createdAt\n    updatedAt\n  }\n}"): (typeof documents)["query GetTasksByAuthorEmail($authorEmail: String!) {\n  tasks(authorEmail: $authorEmail) {\n    authorEmail\n    id\n    title\n    description\n    done\n    createdAt\n    updatedAt\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query GetTaskById($taskId: ID!) {\n  task(id: $taskId) {\n    authorEmail\n    id\n    title\n    description\n    done\n    createdAt\n    updatedAt\n  }\n}"): (typeof documents)["query GetTaskById($taskId: ID!) {\n  task(id: $taskId) {\n    authorEmail\n    id\n    title\n    description\n    done\n    createdAt\n    updatedAt\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

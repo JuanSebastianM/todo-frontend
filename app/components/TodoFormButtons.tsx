@@ -2,6 +2,7 @@ import {
   TODO_MODE_BUTTONS,
   TodoModeEnum,
 } from '@/utils/constants';
+import Link from "next/link";
 
 interface TodoFormButtonsProps {
   mode: TodoModeEnum;
@@ -22,9 +23,9 @@ const TodoFormButtons = ({ mode }: TodoFormButtonsProps) => {
         {buttonTypes.success}
       </button>
       {buttonTypes.danger ? (
-        <button type="button" className="btn-tertiary">
+        <Link href="/todos" className="btn-tertiary">
           {buttonTypes.danger}
-        </button>
+        </Link>
       ) : null}
     </>
   );

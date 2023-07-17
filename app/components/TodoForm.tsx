@@ -16,6 +16,8 @@ const TodoForm = ({
   mode,
   todoData,
 }: TodoFormProps) => {
+  const todoId = todoData?.id ?? '';
+
   async function action(formData: FormData) {
     'use server';
     const title = formData.get('title');
@@ -36,7 +38,7 @@ const TodoForm = ({
 
     if (mode === TodoModeEnum.EDITING) {
       await editTodo({
-        id: todoData?.id ?? '',
+        id: todoId,
         title,
         description,
         authorEmail,
