@@ -1,3 +1,4 @@
+import DeleteTodoButton from '@/app/components/DeleteTodoButton';
 import {
   TODO_MODE_BUTTONS,
   TodoModeEnum,
@@ -22,9 +23,9 @@ const TodoReadingButtons = ({
       >
         {buttonTypes.success}
       </Link>
-      <button type="button" className="btn-tertiary">
+      <DeleteTodoButton taskId={todoId}>
         {buttonTypes.danger}
-      </button>
+      </DeleteTodoButton>
     </>
   );
 };
