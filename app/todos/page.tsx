@@ -33,16 +33,16 @@ export default async function TodosPage() {
     query: GetAllTasksByAuthorQuery,
     variables: {
       authorEmail: user?.email ?? '',
-    }
+    },
   });
 
-  const areThereTasks = !!data.tasks.length;
+  const hasTasks = !!data.tasks.length;
   const introSentence = `Hey, ${user?.name ?? 'user'} 👋! ${
-    areThereTasks
+    hasTasks
       ? 'These are all of your to-dos:'
       : "You don't have any to-dos yet."
   }`;
-  
+
   return (
     <section className="min-h-screen px-8 pt-20">
       <header className="mb-12">
@@ -54,7 +54,7 @@ export default async function TodosPage() {
           mode={TodoModeEnum.CREATING}
         />
       </div>
-      {areThereTasks ? (
+      {hasTasks ? (
         <div className="mt-12 flex flex-col items-center justify-center gap-4">
           {data.tasks.map((task) => {
             const {
